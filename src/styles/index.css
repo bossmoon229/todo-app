@@ -1,7 +1,9 @@
 @import url("./reset.css");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 body {
   background-color: #cccccc;
+  font-family: "Rubik", sans-serif;
 }
 
 .list-wrapper {
@@ -34,8 +36,8 @@ body {
   flex-direction: column;
 }
 
-.todos h1{
-    font-size: 20px;
-    font-weight: bold;
-    padding: 10px;
+.todos h1 {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px;
 }
