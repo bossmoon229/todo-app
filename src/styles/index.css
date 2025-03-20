@@ -15,6 +15,29 @@ body {
   height: 100vh;
 }
 
+.dark-theme{
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark-theme .todos{
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dark-theme img{
+  transition: filter 0.3s ease-in-out;
+  filter: invert(0.4);
+}
+.dark-theme img:hover{
+  filter: invert(1);
+}
+
 .list-wrapper ul {
   padding: 10px;
   display: flex;
@@ -55,12 +78,12 @@ body {
   filter: invert(0.4);
 }
 
-.completed{
+.completed {
   text-decoration: line-through;
   color: grey;
 }
 
-.btn{
+.btn {
   background-color: rgb(99, 99, 226);
   width: 50%;
   border: none;
@@ -73,8 +96,13 @@ body {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: rgb(84, 84, 187);
   transform: scale(1.05);
-  
+}
+
+.theme-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

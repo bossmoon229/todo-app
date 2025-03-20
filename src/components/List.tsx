@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { todos } from "../data/data";
 import trash from "../../public/trash-svgrepo-com.svg";
 import Button from "./Button";
@@ -7,6 +7,18 @@ export default function List() {
   const [checked, setChecked] = useState(todos);
   const [open, setOpen] = useState(false);
   const [newTask, setNewTask] = useState("");
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos !== null) {
+      setChecked(JSON.parse(savedTodos));
+    }
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme !== null) {
+      setTheme(JSON.parse(savedTheme));
+    }
+  }, []);
 
   const handleCheckTodos = (id: number) => {
     setChecked((prevState) =>
@@ -17,7 +29,9 @@ export default function List() {
   };
 
   const handleDelete = (id: number) => {
-    setChecked((prev) => prev.filter((todo) => todo.id !== id));
+    const updatedTodos = checked.filter((todo) => todo.id !== id);
+    setChecked(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
   };
 
   const toggleInput = () => {
@@ -33,16 +47,31 @@ export default function List() {
       completed: false,
     };
 
-    setChecked((prev) => [...prev, newTodo]);
+    const updatedTodos = [...checked, newTodo];
+    setChecked(updatedTodos);
+    localStorage.setItem("todos", JSON.stringify(updatedTodos));
     setNewTask("");
     setOpen(false);
-    console.log(todos);
+  };
+
+  const handleThemeChange = () => {
+    const newTheme = !theme;
+    setTheme(newTheme);
+    localStorage.setItem("theme", JSON.stringify(newTheme));
   };
 
   return (
-    <div className="list-wrapper">
+    <div className={`list-wrapper ${theme ? "dark-theme" : ""}`}>
       <div className="todos">
-        <h1>Things to do</h1>
+        <div className="theme-wrapper">
+          <h1>Things to do</h1>
+          <img
+            className="trash-icon"
+            onClick={handleThemeChange}
+            src={theme ? "public/icons8-sun.svg" : "public/moon-line-icon.svg"}
+            alt="theme-changer"
+          />
+        </div>
         <ul>
           {checked.map((todo) => (
             <li key={todo.id} className={todo.completed ? "completed" : ""}>
