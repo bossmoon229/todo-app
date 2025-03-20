@@ -59,3 +59,22 @@ body {
   text-decoration: line-through;
   color: grey;
 }
+
+.btn{
+  background-color: rgb(99, 99, 226);
+  width: 50%;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 5px;
+
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover{
+  background-color: rgb(84, 84, 187);
+  transform: scale(1.05);
+  
+}

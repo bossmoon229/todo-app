@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { todos } from "../data/data";
 import trash from "../../public/trash-svgrepo-com.svg";
+import Button from "./Button";
 
 export default function List() {
   const [checked, setChecked] = useState(todos);
@@ -25,17 +26,17 @@ export default function List() {
 
   const handleAddTask = () => {
     if (newTask.trim() === "") return;
+
     const newTodo = {
       id: checked.length + 1,
       text: newTask,
       completed: false,
     };
-    
+
     setChecked((prev) => [...prev, newTodo]);
     setNewTask("");
     setOpen(false);
     console.log(todos);
-    
   };
 
   return (
@@ -68,10 +69,11 @@ export default function List() {
               onChange={(e) => setNewTask(e.target.value)}
               placeholder="Enter your task"
             />
-            <button onClick={handleAddTask}>Save</button>
+            <Button onClick={handleAddTask}>Save</Button>
           </>
         )}
-        <button onClick={toggleInput}>{open ? "Cancel" : "Add task"}</button>
+        {/* <button onClick={toggleInput}>{open ? "Cancel" : "Add task"}</button> */}
+        <Button onClick={toggleInput}>{open ? "Cancel" : "Add task"}</Button>
       </div>
     </div>
   );
