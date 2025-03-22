@@ -73,22 +73,26 @@ export default function List() {
           />
         </div>
         <ul>
-          {checked.map((todo) => (
-            <li key={todo.id} className={todo.completed ? "completed" : ""}>
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => handleCheckTodos(todo.id)}
-              />
-              {todo.text}
-              <img
-                className="trash-icon"
-                onClick={() => handleDelete(todo.id)}
-                src={trash}
-                alt=""
-              />
-            </li>
-          ))}
+          {checked.length === 0 ? (
+            <p>There's no notes</p>
+          ) : (
+            checked.map((todo) => (
+              <li key={todo.id} className={todo.completed ? "completed" : ""}>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => handleCheckTodos(todo.id)}
+                />
+                {todo.text}
+                <img
+                  className="trash-icon"
+                  onClick={() => handleDelete(todo.id)}
+                  src={trash}
+                  alt=""
+                />
+              </li>
+            ))
+          )}
         </ul>
         {open && (
           <>
